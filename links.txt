@@ -1,2 +1,3 @@
 **sniffer**
 https://www.binarytides.com/python-packet-sniffer-code-linux/
+https://subscription.packtpub.com/book/networking_and_servers/9781784399771/7/ch07lvl1sec42/parsing-the-packet
