@@ -5,3 +5,7 @@ I contributed
 * Zack
 - Ria
 * IAN
+
+
+run sniff.py with sudo
+\- nadiv
