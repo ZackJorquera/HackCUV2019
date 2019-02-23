@@ -16,6 +16,7 @@ I contributed
 | Splunk Challenge | The team who processes and makes sense of the most unstructured data will win! |
 | Twisted Hackers | Use your creativity and our APIs to bring even more features to Twist. Integrate Twist with apps you think will enhance the product experience or be creative and build new features of your own. API: api.twist.com/api/v3/ |
 | MLH: Best IoT Hack using a Qualcomm Device | Use a Qualcomm device, like the Dragonboard 410C, in your IoT project. |
+| Specialized | design a family based app or program that encourages kids to put down their phones & game consoles and throw a leg over their bike to experience the same wonders of the outdoors, Your hack will be judged on its ability to extend the Riding For Focus program into the home, and extend it by adding elements not capable in a school setting. Make sure your solution gives parents the peace of mind that their kids (and their data) is safe.|
 
 
 
