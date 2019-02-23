@@ -18,6 +18,7 @@ I contributed
 | MLH: Best IoT Hack using a Qualcomm Device | Use a Qualcomm device, like the Dragonboard 410C, in your IoT project. |
 | Specialized | design a family based app or program that encourages kids to put down their phones & game consoles and throw a leg over their bike to experience the same wonders of the outdoors, Your hack will be judged on its ability to extend the Riding For Focus program into the home, and extend it by adding elements not capable in a school setting. Make sure your solution gives parents the peace of mind that their kids (and their data) is safe.|
 | Rapid API |  use 2 or more APIs through the RapidAPI platform. It can be any of the 8,000+ APIs on the marketplace, the more APIs you use the better! Bonus points for creating and exposing your API publicly or privately using RapidAPI to add authentication, billing, analytics, and more. Important URLS: docs.rapidql.com, docs.rapidapi.com, provider.rapidapi.com.|
+| Big Data Analytics: Non-Obvious Web Traffic | analyzing our web behavioral data (clickstream) and finding natural-like groupings (clusters) amongst our visitors, be able to match the right web content to the right visitor at the right time. |
 
 
 
