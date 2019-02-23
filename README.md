@@ -7,7 +7,7 @@ I contributed
 * IAN
 
 
-| CHALLANGES                 | REQUIREMENTS |
+| **CHALLANGES                 | REQUIREMENTS** |
 |:----------------------:|--------------|
 | Best Hardware Hack | Best hack using hardware. |
 | Coolest Hack with Twilio | This prize goes out to the coolest hack with Twilio. Be it by combining various of our own APIs, use our APIs in ways we haven’t seen before or by solving a great problem with them. Your creativity sets all the limits in this one. Documentation: twilio.com/docs. Check out Twilio Quest to learn Twilio APIs in a fun and interactive way (plus there will be credit and t-shirt awards): twilio.com/quest
@@ -25,8 +25,7 @@ I contributed
 
 
 
-IDEAS FOR HACKS:
-|:----------------------:|--------------|
+**IDEAS FOR HACKS:**
 
 
 
