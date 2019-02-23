@@ -1,6 +1,6 @@
 # HackCUV2019
 
-I contributed
+Meet the TEAM ;)
 - Nadiv
 * Zack
 - Ria
