@@ -1,5 +1,5 @@
 # HackCUV2019
 
-I contributied
+I contributed
 - Nadiv
 * Zack
