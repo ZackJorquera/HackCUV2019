@@ -1,0 +1,12 @@
+msg:"your package is fucked"
+
+gps:(10.009,-1002)
+
+jerk:9
+msg:"Possible drop, with change in accel: 9"
+
+Water:88
+msg:"possible water damage"
+
+msg:"low battery"
+
