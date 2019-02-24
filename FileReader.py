@@ -3,14 +3,6 @@ from pathlib2 import Path
 import time
 import os
 
-open('config.txt', 'w')
-time.sleep(10)
-f = open("config.txt", "a")
-time.sleep(10)
-f.write('+17202357772/n')
-time.sleep(10)
-f.write("destgps:(50,50)\n")
-
 while (True):
     my_file = Path("/home/linaro/Documents/TextMessage")
     if my_file.is_file():
