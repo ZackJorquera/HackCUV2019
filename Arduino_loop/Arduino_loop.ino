@@ -471,6 +471,7 @@ void loop()
     }
 
     text_send();
+    iterator++
     delay(300);
 }
 
@@ -490,9 +491,9 @@ void text_send()
 
 void displayInfo()
 {
-  Serial.print(F("Location: ")); 
   if (gps.location.isValid())
   {
+    Serial.print(F("Location: "));
     Serial.print(gps.location.lat(), 6);
     Serial.print(F(","));
     Serial.print(gps.location.lng(), 6);
