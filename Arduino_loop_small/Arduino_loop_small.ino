@@ -537,7 +537,7 @@ void text_send()
 
   //dataFile.print(text_msg);
 
-  Serial.print(text_msg);
+  //Serial.print(text_msg);
 
   
     //call python file
