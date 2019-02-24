@@ -35,8 +35,12 @@ def text(s):
     m = "";
     for i in l:
         m = m + i + " "
-    textServ(m)
+    if (m != ''):
+        textServ(m)
     if (len(l) <= 1):
         p = re.compile('^( gps.+)\)[\r \n]+$', re.MULTILINE)
-        textCli(p.sub('', s))
+        if(p.sub('', s) != ''):
+            textCli(p.sub('', s))
 
+
+#text(string) #test the text function
