@@ -1,10 +1,10 @@
 # HackCUV2019
 
-I contributed
-- Nadiv
-* Zack
-- Ria
-* IAN
+Contributions from:
+- Nadiv Gold-Edelstein
+- Zack Jorquera
+- Ria Thakker
+- Ian Jorquera
 
 
 | **CHALLANGES**                 | **REQUIREMENTS** |
