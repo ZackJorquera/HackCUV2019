@@ -145,11 +145,11 @@ VectorInt16 aaReal_p;   // [x, y, z]          previous gravity-free accel sensor
 VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
 VectorInt16 aaWorld_p;  // [x, y, z]            previous world-frame accel sensor measurements
 VectorFloat gravity;    // [x, y, z]            gravity vector
-//float euler[3];         // [psi, theta, phi]    Euler angle container
-//float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+float euler[3];         // [psi, theta, phi]    Euler angle container
+float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
 // packet structure for InvenSense teapot demo
-//uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r', '\n' };
+uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r', '\n' };
 
 
 //Thresholds
@@ -180,7 +180,7 @@ SoftwareSerial ss(RXPin, TXPin);
 
 
 //PrintWriter output;
-//File dataFile;
+File dataFile;
 
 
 // ================================================================
@@ -209,8 +209,8 @@ void setup()
     //SD.begin(4);
 
     //GPS
-    //Serial.begin(115200);
-    //ss.begin(GPSBaud);
+    Serial.begin(115200);
+    ss.begin(GPSBaud);
    
     //Acceleration
     // join I2C bus (I2Cdev library doesn't do this automatically)
