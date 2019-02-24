@@ -415,7 +415,8 @@ void text_load(String tag, String data)
 void text_send()
 {
   //call python file
-  p.runShellCommand("python ~/sendText.py \"" + text_msg + "\"" );// wont work unless fine is there
+  //uncomment when python script is present
+  //p.runShellCommand("python ~/sendText.py \"" + text_msg + "\"" );// wont work unless fine is there
   
   text_msg = "";
 }
