@@ -99,7 +99,7 @@ void setup()
     //writing to txt
     //Bridge.begin();
     //FileSystem.begin();
-    SD.begin(0);
+    SD.begin(4);
 
     //GPS
     Serial.begin(115200);
