@@ -39,23 +39,23 @@ THE SOFTWARE.
 */
 
 //GPS Headers
-# include <TinyGPS++.h>
-# include <SoftwareSerial.h>
+#include <TinyGPS++.h>
+#include <SoftwareSerial.h>
 /*This sample sketch demonstrates the normal use of a TinyGPS++ (TinyGPSPlus) object.   
 It requires the use of SoftwareSerial, and assumes that you have a 9600-baud serial 
 GPS device hooked up on pins 8(rx) and 9(tx).*/
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
-# include "I2Cdev.h"
+#include "I2Cdev.h"
 
-# include "MPU6050_6Axis_MotionApps20.h"
+#include "MPU6050_6Axis_MotionApps20.h"
 //#include "MPU6050.h" // not necessary if using MotionApps include file
 
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
 // is used in I2Cdev.h
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-# include "Wire.h"
+#include "Wire.h"
 #endif
 
 // class default I2C address is 0x68
