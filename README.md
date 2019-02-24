@@ -3,7 +3,7 @@
 Contributions from:
 - Nadiv Gold-Edelstein
 - Zack Jorquera
-- Ria Thakker
+- Ria Thakkar
 - Ian Jorquera
 
 
@@ -40,3 +40,4 @@ The microcomputer will come stocked with a variety of sensors including:
 
 We care deeply about your package, and you should too. There's no better way to ensure your package is insured and lives up to the high shipping costs you pay.
 
+note: view picture for flow chart.
