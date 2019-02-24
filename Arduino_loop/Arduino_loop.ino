@@ -33,9 +33,6 @@ MPU6050 mpu;
 #define OUTPUT_READABLE_WORLDACCEL//i think we want this one
 
 
-
-#define LED_PIN 13 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
-
 // MPU control/status vars
 bool dmpReady = false;  // set true if DMP init was successful
 uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
@@ -180,9 +177,6 @@ void setup()
         Serial.print(devStatus);
         Serial.println(F(")"));
     }
-
-    // configure LED for output
-    pinMode(LED_PIN, OUTPUT);
 
     //This just tells us not to compare the first value to nothing
     aaReal_p.x = -100;
