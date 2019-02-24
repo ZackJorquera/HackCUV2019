@@ -351,12 +351,15 @@ void loop() {
               //jerk calculations. if Jerk > 8.
               //magnitude of the jerk. in this cae direction doesnt matter
               //also for fast computation we only care about the jerk^2
-              float jerk_mag_squared = sq(3*(aaReal.x - aaReal_p.x)) + sq(3*(aaReal.y - aaReal_p.y)) + sq(3*(aaReal.z - aaReal_p.z));
+
+              auto jerk_mag_squared = sq(3*(aaReal.x - aaReal_p.x)) + sq(3*(aaReal.y - aaReal_p.y)) + sq(3*(aaReal.z - aaReal_p.z));
+              
 
               if (jerk_mag_squared > sq(jerk_thershold))
               {
-                text_load("jerk", String::String(jerk_mag_squared));
-                text_load("msg", ("Possible drop: Jerk^2(>8): " + String::String(jerk_mag_squared)));
+                char c[100] = "Possible drop: Jerk^2(>8): ";
+                sprintf(c, "%f", jerk_mag_squared);
+                text_load("msg", c);
               }
             }
             //set prev values at end of loop, init at -100;
