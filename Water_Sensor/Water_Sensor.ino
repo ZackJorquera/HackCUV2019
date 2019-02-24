@@ -4,6 +4,10 @@ void setup()
 }
 void loop()
 {
-  int sensor=analogRead(A1); // Incoming analog signal read and appointed sensor
-  Serial.println(sensor);   //Wrote serial port
+  int water_reading = analogRead(A1); // Incoming analog signal read and appointed sensor
+  
+  if (water_reading > water_sensor_threshold)
+  {
+    //text_load()
+  }
 }
