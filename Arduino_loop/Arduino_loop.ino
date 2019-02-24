@@ -295,7 +295,7 @@ void loop()
 
             if (jerk_mag_squared > sq(jerk_thershold))
             {
-                char c[200] = "Possible drop: Jerk^2[>8]: ";
+                char c[100] = "Possible drop: Jerk^2[>8]: ";
                 sprintf(c, "%f", jerk_mag_squared);
                 text_load("msg", c);
             }
@@ -333,7 +333,7 @@ void loop()
 
             if (jerk_mag_squared > sq(jerk_thershold))
             {
-                char c[200] = "Possible drop: Jerk^2[>8]: ";
+                char c[100] = "Possible drop: Jerk^2[>8]: ";
                 sprintf(c, "%f", jerk_mag_squared);
                 text_load("msg", c);
             }
@@ -401,7 +401,7 @@ void displayInfo()
     Serial.print(F(","));
     Serial.println(gps.location.lng(), 6);
      
-    char c[200] = "";
+    char c[100] = "";
     sprintf(c, "(%f,%f)", gps.location.lat(), gps.location.lng());
     text_load("gps", c);
 }
