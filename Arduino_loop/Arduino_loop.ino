@@ -40,7 +40,6 @@ THE SOFTWARE.
 */
 
 //Writing to files
-//#include <FileIO.h>
 #include <SPI.h>
 #include <SD.h>
 
@@ -146,11 +145,11 @@ VectorInt16 aaReal_p;   // [x, y, z]          previous gravity-free accel sensor
 VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
 VectorInt16 aaWorld_p;  // [x, y, z]            previous world-frame accel sensor measurements
 VectorFloat gravity;    // [x, y, z]            gravity vector
-float euler[3];         // [psi, theta, phi]    Euler angle container
-float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+//float euler[3];         // [psi, theta, phi]    Euler angle container
+//float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
 // packet structure for InvenSense teapot demo
-uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r', '\n' };
+//uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r', '\n' };
 
 
 //Thresholds
@@ -351,43 +350,43 @@ void loop()
         // (this lets us immediately read more without waiting for an interrupt)
         fifoCount -= packetSize;
 
-# ifdef OUTPUT_READABLE_QUATERNION
+//# ifdef OUTPUT_READABLE_QUATERNION
         // display quaternion values in easy matrix form: w x y z
-        mpu.dmpGetQuaternion(&q, fifoBuffer);
-        Serial.print("quat\t");
-        Serial.print(q.w);
-        Serial.print("\t");
-        Serial.print(q.x);
-        Serial.print("\t");
-        Serial.print(q.y);
-        Serial.print("\t");
-        Serial.println(q.z);
-#endif
+        //mpu.dmpGetQuaternion(&q, fifoBuffer);
+        //Serial.print("quat\t");
+        //Serial.print(q.w);
+        //Serial.print("\t");
+        //Serial.print(q.x);
+      //  Serial.print("\t");
+        //Serial.print(q.y);
+    //    Serial.print("\t");
+  //      Serial.println(q.z);
+//#endif
 
-# ifdef OUTPUT_READABLE_EULER
+//# ifdef OUTPUT_READABLE_EULER
         // display Euler angles in degrees
-        mpu.dmpGetQuaternion(&q, fifoBuffer);
-        mpu.dmpGetEuler(euler, &q);
-        Serial.print("euler\t");
-        Serial.print(euler[0] * 180 / M_PI);
-        Serial.print("\t");
-        Serial.print(euler[1] * 180 / M_PI);
-        Serial.print("\t");
-        Serial.println(euler[2] * 180 / M_PI);
-#endif
+        //mpu.dmpGetQuaternion(&q, fifoBuffer);
+        //mpu.dmpGetEuler(euler, &q);
+        //Serial.print("euler\t");
+        //Serial.print(euler[0] * 180 / M_PI);
+        //Serial.print("\t");
+      //  Serial.print(euler[1] * 180 / M_PI);
+    //    Serial.print("\t");
+  //      Serial.println(euler[2] * 180 / M_PI);
+//#endif
 
-# ifdef OUTPUT_READABLE_YAWPITCHROLL
+//# ifdef OUTPUT_READABLE_YAWPITCHROLL
         // display Euler angles in degrees
-        mpu.dmpGetQuaternion(&q, fifoBuffer);
-        mpu.dmpGetGravity(&gravity, &q);
-        mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-        Serial.print("ypr\t");
-        Serial.print(ypr[0] * 180 / M_PI);
-        Serial.print("\t");
-        Serial.print(ypr[1] * 180 / M_PI);
-        Serial.print("\t");
-        Serial.println(ypr[2] * 180 / M_PI);
-#endif
+        //mpu.dmpGetQuaternion(&q, fifoBuffer);
+        //mpu.dmpGetGravity(&gravity, &q);
+        //mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
+      //  Serial.print("ypr\t");
+        //Serial.print(ypr[0] * 180 / M_PI);
+      //  Serial.print("\t");
+      //  Serial.print(ypr[1] * 180 / M_PI);
+    //    Serial.print("\t");
+  //      Serial.println(ypr[2] * 180 / M_PI);
+//#endif
 
         //THis is all we care about!!!
 # ifdef OUTPUT_READABLE_REALACCEL
@@ -464,19 +463,19 @@ void loop()
         aaWorld_p.x = aaWorld.x;
 #endif
 
-# ifdef OUTPUT_TEAPOT
-        // display quaternion values in InvenSense Teapot demo format:
-        teapotPacket[2] = fifoBuffer[0];
-        teapotPacket[3] = fifoBuffer[1];
-        teapotPacket[4] = fifoBuffer[4];
-        teapotPacket[5] = fifoBuffer[5];
-        teapotPacket[6] = fifoBuffer[8];
-        teapotPacket[7] = fifoBuffer[9];
-        teapotPacket[8] = fifoBuffer[12];
-        teapotPacket[9] = fifoBuffer[13];
-        Serial.write(teapotPacket, 14);
-        teapotPacket[11]++; // packetCount, loops at 0xFF on purpose
-#endif
+//# ifdef OUTPUT_TEAPOT
+  //      // display quaternion values in InvenSense Teapot demo format:
+    //    teapotPacket[2] = fifoBuffer[0];
+      //  teapotPacket[3] = fifoBuffer[1];
+        //teapotPacket[4] = fifoBuffer[4];
+        //teapotPacket[5] = fifoBuffer[5];
+        //teapotPacket[6] = fifoBuffer[8];
+        //teapotPacket[7] = fifoBuffer[9];
+        //teapotPacket[8] = fifoBuffer[12];
+        //teapotPacket[9] = fifoBuffer[13];
+        //Serial.write(teapotPacket, 14);
+        //teapotPacket[11]++; // packetCount, loops at 0xFF on purpose
+//#endif
 
         // blink LED to indicate activity
         blinkState = !blinkState;
