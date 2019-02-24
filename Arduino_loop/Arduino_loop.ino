@@ -499,7 +499,7 @@ void displayInfo()
      
     char c[200] = "";
     sprintf(c, "(%f,%f)", gps.location.lat(), gps.location.lng());
-    text_load("gps", c)
+    text_load("gps", c);
   }
   //else
   //{
