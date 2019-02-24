@@ -17,13 +17,6 @@ while (True):
         content = my_file.read_text()
         os.remove(str(my_file))
 
-        
-        if (initialise == True):
-            f = open('config.txt', 'r')
-            (f.readline())
-            content = (f.readline()) + content
-            f.close()
-            initialise = False
         print("sending: ", content)
         sendText.text(str(content))
 
