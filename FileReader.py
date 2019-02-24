@@ -21,7 +21,7 @@ while (True):
             if (initialise == True):
                 f.open('config.txt', 'r')
                 (f.readline())
-                line = print(f.readline()) + line
+                line = (f.readline()) + line
                 f.close()
                 initialise = False
             print("sending: ", line)
