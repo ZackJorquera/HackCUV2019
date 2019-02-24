@@ -4,7 +4,7 @@ import time
 import os
 
 while(True):
-    my_file = Path("/home/linaro/Documents/txt.txt")
+    my_file = Path("/tmp/~/TextMessage")
     if my_file.is_file():
         content = my_file.read_text()
         os.remove(str(my_file))
