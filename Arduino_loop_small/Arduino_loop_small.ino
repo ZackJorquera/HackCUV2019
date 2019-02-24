@@ -565,9 +565,9 @@ void displayInfo()
   }
   else
   {
-    Serial.print("40.0096", 6);
+    Serial.print("40.0096");
     Serial.print(F(","));
-    Serial.print("-105.2419", 6);
+    Serial.print("-105.2419");
   }  
   Serial.println();
 }
