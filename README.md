@@ -9,3 +9,9 @@ I contributed
 
 run sniff.py with sudo
 \- nadiv
+
+
+
+sudo ip link set IFACE down
+sudo iw IFACE set monitor control
+sudo ip link set IFACE up
