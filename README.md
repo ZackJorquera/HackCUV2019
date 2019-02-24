@@ -31,6 +31,8 @@ But now, with the advent of inexpensive microcomputers like Arduino, Raspberry P
 
 In the future, you can log in to a website and get minute by minute updates on your package's condition, but for now, we're using Twilio's API's to send you critical information as it occurs and Rapid's APIs to give you premium access to maps so you can check the exact location of your important goods.
 
+To prove we're the best, we check our data against UPS, DHL, FedEx, and USPS, and with the ability to get detailed statistics about your order delivered direct to your phone, filing damaged or lost package claims is dead easy.
+
 The microcomputer will come stocked with a variety of sensors including:
 * GPS for accurate tracking of your package. Out with tracking numbers and in with real-time updates
 * Accelerometer to let you know if your fragile package had and unexpected bumps or bruises in transit
