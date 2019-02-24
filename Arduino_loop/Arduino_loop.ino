@@ -54,7 +54,7 @@ GPS device hooked up on pins 8(rx) and 9(tx).*/
 //#include "MPU6050.h" // not necessary if using MotionApps include file
 
 //launch python script
-#include <Bridge.h>
+//#include <Bridge.h>
 #include <Process.h>
 
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
@@ -526,7 +526,7 @@ void text_send()
     //Process p;
     try
     {
-      //p.runShellCommand("python ~/sendText.py text \"" + text_msg + "\"" );// wont work unless fine is there
+      p.runShellCommandAsynchronously("python ~/sendText.py text \"" + text_msg + "\"" );// wont work unless fine is there
     }
     catch (...)
     {
