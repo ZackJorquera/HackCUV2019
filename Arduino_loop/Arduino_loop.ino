@@ -114,7 +114,7 @@ MPU6050 mpu;
 // components with gravity removed and adjusted for the world frame of
 // reference (yaw is relative to initial orientation, since no magnetometer
 // is present in this case). Could be quite handy in some cases.
-//#define OUTPUT_READABLE_WORLDACCEL
+//#define OUTPUT_READABLE_WORLDACCEL//i think we want this one
 
 // uncomment "OUTPUT_TEAPOT" if you want output that matches the
 // format used for the InvenSense teapot demo
@@ -139,6 +139,7 @@ VectorInt16 aa;         // [x, y, z]            accel sensor measurements
 VectorInt16 aaReal;     // [x, y, z]            gravity-free accel sensor measurements
 VectorInt16 aaReal_p;   // [x, y, z]          previous gravity-free accel sensor measurements
 VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
+VectorInt16 aaWorld_p;  // [x, y, z]            previous world-frame accel sensor measurements
 VectorFloat gravity;    // [x, y, z]            gravity vector
 float euler[3];         // [psi, theta, phi]    Euler angle container
 float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
@@ -148,16 +149,18 @@ uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r'
 
 
 //Thresholds
-float jerk_thershold = 8;
-float water_sensor_threshold = 80;
+const float jerk_thershold = 8;
+const float water_sensor_threshold = 80;
 
-//functionsto load text
+//text message buffer
 String text_msg = "";
 
+//functions
 void text_load(String tag, String data);
 void text_send();
 void displayInfo();
 
+//iterator. we use this so we dont record data for gps as often as acceleration data
 int iterator = 0;
 
 //GPS constants
@@ -191,14 +194,15 @@ void dmpDataReady()
 
 void setup()
 {
-    //water sensor
+    //Water sensor
     //Serial.begin(9600);     // Communication started with 9600 baud
+    // We dont need this becuse we set the baud rate to 115200 later on
 
     //GPS
     Serial.begin(115200);
     ss.begin(GPSBaud);
    
-    //Accel
+    //Acceleration
     // join I2C bus (I2Cdev library doesn't do this automatically)
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
     Wire.begin();
@@ -275,7 +279,9 @@ void setup()
     // configure LED for output
     pinMode(LED_PIN, OUTPUT);
 
+    //This just tells us not to compare the first value to nothing
     aaReal_p.x = -100;
+    aaWorld_p.x = -100
 }
 
 
@@ -316,7 +322,7 @@ void loop()
     {
         // reset so we can continue cleanly
         mpu.resetFIFO();
-        Serial.println(F("FIFO overflow!"));
+        //Serial.println(F("FIFO overflow!"));// we get this a lot
 
         // otherwise, check for DMP data ready interrupt (this should happen frequently)
     }
@@ -396,7 +402,7 @@ void loop()
 
             if (jerk_mag_squared > sq(jerk_thershold))
             {
-                char c[100] = "Possible drop: Jerk^2(>8): ";
+                char c[200] = "Possible drop: Jerk^2(>8): ";
                 sprintf(c, "%f", jerk_mag_squared);
                 text_load("msg", c);
             }
@@ -422,6 +428,27 @@ void loop()
         Serial.print("\t");
         Serial.println(aaWorld.z);
 
+        //Logic for dropage
+        if (aaWorld_p.x != -100)
+        {
+            //jerk calculations. if Jerk > 8.
+            //magnitude of the jerk. in this cae direction doesnt matter
+            //also for fast computation we only care about the jerk^2
+
+            float jerk_mag_squared = sq(3 * (aaWorld.x - aaWorld_p.x)) + sq(3 * (aaWorld.y - aaWorld_p.y)) + sq(3 * (aaWorld.z - aaWorld_p.z));
+
+
+            if (jerk_mag_squared > sq(jerk_thershold))
+            {
+                char c[200] = "Possible drop: Jerk^2(>8): ";
+                sprintf(c, "%f", jerk_mag_squared);
+                text_load("msg", c);
+            }
+        }
+        //set prev values at end of loop, init at -100;
+        aaWorld_p.x = aaWorld.x;
+        aaWorld_p.x = aaWorld.x;
+        aaWorld_p.x = aaWorld.x;
 #endif
 
 # ifdef OUTPUT_TEAPOT
@@ -443,10 +470,13 @@ void loop()
         digitalWrite(LED_PIN, blinkState);
     }
 
-    if (iterator % 500 == 0)
+    if (iterator % 50 == 0)
     {
-        //Other codes: GPS, Water
+        iterator = 0;
+        //Other codes: Water level
         int water_reading = analogRead(A1); // Incoming analog signal read and appointed sensor
+        Serial.println(water_reading);
+        
 
         //GPS
         // This sketch displays information every time a new sentence is correctly encoded.
@@ -460,10 +490,12 @@ void loop()
         //  while(true);
         //}
 
-
+        //check thresholds
         if (water_reading > water_sensor_threshold)
         {
-            //text_load()
+          char c[100] = "Possible water damage! water level: ";
+          sprintf(c, "%f", water_reading);
+          text_load("msg", c);
         }
 
         //Get Data
@@ -484,8 +516,15 @@ void text_send()
 {
     //call python file
     //uncomment when python script is present
-    //p.runShellCommand("python ~/sendText.py \"" + text_msg + "\"" );// wont work unless fine is there
-
+    Process p;
+    try
+    {
+    p.runShellCommand("python ~/sendText.py text \"" + text_msg + "\"" );// wont work unless fine is there
+    }
+    catch (...)
+    {
+      Serial.println("Oh snap!! python scripts DIDNT WORK. FIX THAT!");
+    }
     text_msg = "";
 }
 
