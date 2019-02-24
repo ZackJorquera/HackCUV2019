@@ -180,7 +180,6 @@ SoftwareSerial ss(RXPin, TXPin);
 
 
 //PrintWriter output;
-File dataFile;
 
 
 // ================================================================
