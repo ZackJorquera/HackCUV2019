@@ -149,6 +149,7 @@ String text_msg = "";
 void text_load(String tag, String data);
 void text_send();
 
+int iterator = 0;
 
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
@@ -354,8 +355,8 @@ void loop() {
 
               if (jerk_mag_squared > sq(jerk_thershold))
               {
-                text_load("jerk", String(jerk_mag_squared));
-                text_load("msg", ("Possible drop: Jerk^2(>8): " + String(jerk_mag_squared)));
+                text_load("jerk", String::String(jerk_mag_squared));
+                text_load("msg", ("Possible drop: Jerk^2(>8): " + String::String(jerk_mag_squared)));
               }
             }
             //set prev values at end of loop, init at -100;
@@ -399,6 +400,15 @@ void loop() {
         blinkState = !blinkState;
         digitalWrite(LED_PIN, blinkState);
     }
+
+    if (iterator % 500 == 0)
+    {
+      //Other codes: GPS, Water
+
+      //Get Data
+      //text_load();
+    }
+
     text_send();
     delay(300);
 }
