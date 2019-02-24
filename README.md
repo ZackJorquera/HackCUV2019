@@ -12,8 +12,12 @@ run sniff.py with sudo
 
 
 
-sudo ip link set IFACE down
 
-sudo iw IFACE set monitor control
 
-sudo ip link set IFACE up
+
+
+sudo ip link set wlan0 down
+
+sudo iw wlan0 set type managed
+
+sudo ip link set wlan0 up
