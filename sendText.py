@@ -25,18 +25,20 @@ def textCli(sCli):
 
 def textServ(sServ):
     message = client.messages.create(
-        to="+4434942069",
+        to="+14434942069",
         from_="+18653442069",
         body=sServ)
 
 def text(s):
     p = re.compile('\((.*?)\)', re.MULTILINE)
     l = p.findall(s)
+    m = "";
     for i in l:
-        textServ(i)
+        m = m + i + " "
+    textServ(m)
     if (len(l) <= 1):
         p = re.compile('^( gps.+)\)[\r \n]+$', re.MULTILINE)
         textCli(p.sub('', s))
 
 
-#text(string) #test the text function
+text(string) #test the text function
