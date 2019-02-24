@@ -99,7 +99,7 @@ void setup()
     //writing to txt
     //Bridge.begin();
     //FileSystem.begin();
-    SD.begin(4);
+    SD.begin(0);
 
     //GPS
     Serial.begin(115200);
@@ -351,7 +351,7 @@ void loop()
 
     }
 
-    if (iterator % 50 == 0)
+    if (iterator % 2 == 0)
     {
         iterator = 0;
         //Other codes: Water level
