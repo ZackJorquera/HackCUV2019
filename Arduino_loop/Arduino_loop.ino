@@ -148,7 +148,7 @@ uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r'
 
 //Thresholds
 float jerk_thershold = 8;
-float water_threshold = 80;
+float water_sensor_threshold = 80;
 
 //functionsto load text
 String text_msg = "";
@@ -496,6 +496,10 @@ void displayInfo()
     Serial.print(gps.location.lat(), 6);
     Serial.print(F(","));
     Serial.print(gps.location.lng(), 6);
+     
+    char c[200]
+    sprintf(c, "(%f,%f)", gps.location.lat(), gps.location.lng());
+    text_load("gps", c)
   }
   //else
   //{
