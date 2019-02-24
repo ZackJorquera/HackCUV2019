@@ -35,15 +35,18 @@ void loop()
 void displayInfo()
 {
   Serial.print(F("Location: ")); 
-  //if (gps.location.isValid())
-  //{
+  if (gps.location.isValid())
+  {
     Serial.print(gps.location.lat(), 6);
     Serial.print(F(","));
     Serial.print(gps.location.lng(), 6);
-  //}
+  }
   //else
   //{
   //  Serial.print(F("INVALID"));
+  //  Serial.print("40.0096", 6);
+  //  Serial.print(F(","));
+  //  Serial.print("-105.2419", 6);
   //}  
   Serial.println();
 }
