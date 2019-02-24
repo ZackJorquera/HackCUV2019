@@ -354,8 +354,8 @@ void loop() {
 
               if (jerk_mag_squared > sq(jerk_thershold))
               {
-                text_load("jerk", (String)(jerk_mag_squared));
-                text_load("msg", ("Possible drop: Jerk^2(>8): " + (String)(jerk_mag_squared)));
+                text_load("jerk", String(jerk_mag_squared));
+                text_load("msg", ("Possible drop: Jerk^2(>8): " + String(jerk_mag_squared)));
               }
             }
             //set prev values at end of loop, init at -100;
