@@ -133,14 +133,25 @@ uint8_t fifoBuffer[64]; // FIFO storage buffer
 Quaternion q;           // [w, x, y, z]         quaternion container
 VectorInt16 aa;         // [x, y, z]            accel sensor measurements
 VectorInt16 aaReal;     // [x, y, z]            gravity-free accel sensor measurements
+VectorInt16 aaReal_p;   // [x, y, z]          previous gravity-free accel sensor measurements
 VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
 VectorFloat gravity;    // [x, y, z]            gravity vector
-//float euler[3];         // [psi, theta, phi]    Euler angle container
-//float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
+float euler[3];         // [psi, theta, phi]    Euler angle container
+float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
 // packet structure for InvenSense teapot demo
-//uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
+uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
 
+
+//Thresholds
+float jerk_thershold = 8;
+float water_threshold = 0;
+
+//functionsto load text
+String text_msg = "";
+
+void text_load(String tag, String data);
+void text_send();
 
 
 // ================================================================
@@ -232,6 +243,8 @@ void setup() {
 
     // configure LED for output
     pinMode(LED_PIN, OUTPUT);
+
+    aaReal_p.x = -100;
 }
 
 
@@ -321,6 +334,7 @@ void loop() {
             Serial.println(ypr[2] * 180/M_PI);
         #endif
 
+//THis is all we care about!!!
         #ifdef OUTPUT_READABLE_REALACCEL
             // display real acceleration, adjusted to remove gravity
             mpu.dmpGetQuaternion(&q, fifoBuffer);
@@ -333,6 +347,25 @@ void loop() {
             Serial.print(aaReal.y);
             Serial.print("\t");
             Serial.println(aaReal.z);
+            
+            //Logic for dropage
+            if (aaReal_p.x != -100)
+            {
+              //jerk calculations. if Jerk > 8.
+              //magnitude of the jerk. in this cae direction doesnt matter
+              //also for fast computation we only care about the jerk^2
+              float jerk_mag_squared = sq(3*(aaReal.x - aaReal_p.x)) + sq(3*(aaReal.y - aaReal_p.y)) + sq(3*(aaReal.z - aaReal_p.z));
+
+              if (jerk_mag_squared > sq(jerk_thershold))
+              {
+                text_load("jerk", String(jerk_mag_squared));
+                text_load("msg", ("Possible drop: Jerk^2(>8): " + String(jerk_mag_squared)));
+              }
+            }
+            //set prev values at end of loop, init at -100;
+            aaReal_p.x = aaReal.x;
+            aaReal_p.x = aaReal.x;
+            aaReal_p.x = aaReal.x;
         #endif
 
         #ifdef OUTPUT_READABLE_WORLDACCEL
@@ -349,6 +382,7 @@ void loop() {
             Serial.print(aaWorld.y);
             Serial.print("\t");
             Serial.println(aaWorld.z);
+            
         #endif
     
         #ifdef OUTPUT_TEAPOT
@@ -369,4 +403,19 @@ void loop() {
         blinkState = !blinkState;
         digitalWrite(LED_PIN, blinkState);
     }
+    text_send();
+    delay(300);
+}
+
+void text_load(String tag, String data)
+{
+  text_msg += (tag + ":" + data + "\n"); 
+}
+
+void text_send()
+{
+  //call python file
+  p.runShellCommand("python ~/sendText.py \"" + text_msg + "\"" );// wont work unless fine is there
+  
+  text_msg = "";
 }
