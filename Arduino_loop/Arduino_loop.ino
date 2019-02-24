@@ -154,7 +154,6 @@ VectorFloat gravity;    // [x, y, z]            gravity vector
 
 //Thresholds
 const float jerk_thershold = 8;
-const float water_sensor_threshold = 80;
 
 //text message buffer
 String text_msg = "";
@@ -486,8 +485,8 @@ void loop()
     {
         iterator = 0;
         //Other codes: Water level
-        int water_reading = analogRead(A1); // Incoming analog signal read and appointed sensor
-        Serial.println(water_reading);
+       // int water_reading = analogRead(A1); // Incoming analog signal read and appointed sensor
+        //Serial.println(water_reading);
         
 
         //GPS
@@ -503,12 +502,12 @@ void loop()
         //}
 
         //check thresholds
-        if (water_reading > water_sensor_threshold)
-        {
-          char c[100] = "Possible water damage! water level: ";
-          sprintf(c, "%f", water_reading);
-          text_load("msg", c);
-        }
+       // if (water_reading > water_sensor_threshold)
+        //{
+//          char c[100] = "Possible water damage! water level: ";
+//          sprintf(c, "%f", water_reading);
+//          text_load("msg", c);
+//        }
 
         //Get Data
         //text_load();
