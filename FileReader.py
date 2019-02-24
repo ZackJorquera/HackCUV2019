@@ -5,7 +5,7 @@ import os
 
 f = open('config.txt', 'w')
 
-f.write('+17202357772')
+f.write("+17202357772\n")
 f.write("destgps:(50,50)\n")
 f.close()
 
