@@ -10,7 +10,7 @@ auth_token  = "4d5a38878d4689ea4274ee74674368f0"
 
 #string = "msg: your package is fucked \n gps:(10.009,-1002) \n jerk:9 \n msg: Possible drop, with change in accel: 9  \n Water:88 \n msg: possible water damage \n msg: low battery" #test s is the test string
 #string = "destgps:(100,100)\ngps:(1,1)"
-
+#string = "test1"
 
 client = Client(account_sid, auth_token)
 
@@ -34,13 +34,14 @@ def text(s):
     l = p.findall(s)
     m = "";
     for i in l:
-        m = m + i + " "
+        m = m + i + ''
     if (m != ''):
         textServ(m)
     if (len(l) <= 1):
         p = re.compile('^( gps.+)\)[\r \n]+$', re.MULTILINE)
-        if(p.sub('', s) != ''):
-            textCli(p.sub('', s))
+        l = p.sub('', s)
+        if(l != ''):
+            textCli(l)
 
 
 #text(string) #test the text function
