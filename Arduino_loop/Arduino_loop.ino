@@ -53,6 +53,10 @@ GPS device hooked up on pins 8(rx) and 9(tx).*/
 #include "MPU6050_6Axis_MotionApps20.h"
 //#include "MPU6050.h" // not necessary if using MotionApps include file
 
+//launch python script
+#include <Bridge.h>
+#include <Process.h>
+
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
 // is used in I2Cdev.h
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -281,7 +285,9 @@ void setup()
 
     //This just tells us not to compare the first value to nothing
     aaReal_p.x = -100;
-    aaWorld_p.x = -100
+    aaWorld_p.x = -100;
+   
+   Bridge.begin();
 }
 
 
@@ -503,7 +509,7 @@ void loop()
     }
 
     text_send();
-    iterator++
+    iterator++;
     delay(300);
 }
 
@@ -516,10 +522,11 @@ void text_send()
 {
     //call python file
     //uncomment when python script is present
-    Process p;
+   
+    //Process p;
     try
     {
-    p.runShellCommand("python ~/sendText.py text \"" + text_msg + "\"" );// wont work unless fine is there
+      //p.runShellCommand("python ~/sendText.py text \"" + text_msg + "\"" );// wont work unless fine is there
     }
     catch (...)
     {
