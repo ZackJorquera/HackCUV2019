@@ -206,10 +206,10 @@ void setup() {
     devStatus = mpu.dmpInitialize();
 
     // supply your own gyro offsets here, scaled for min sensitivity
-    mpu.setXGyroOffset(220);
-    mpu.setYGyroOffset(76);
-    mpu.setZGyroOffset(-85);
-    mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
+    //mpu.setXGyroOffset(220);
+    //mpu.setYGyroOffset(76);
+    //mpu.setZGyroOffset(-85);
+    //mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
 
     // make sure it worked (returns 0 if so)
     if (devStatus == 0) {
@@ -352,7 +352,7 @@ void loop() {
               //magnitude of the jerk. in this cae direction doesnt matter
               //also for fast computation we only care about the jerk^2
 
-              float jerk_mag_squared = sq(3*(aaReal.x - aaReal_p.x)) + sq(3*(aaReal.y - aaReal_p.y)) + sq(3*(aaReal.z - aaReal_p.z));
+              auto jerk_mag_squared = sq(3*(aaReal.x - aaReal_p.x)) + sq(3*(aaReal.y - aaReal_p.y)) + sq(3*(aaReal.z - aaReal_p.z));
               
 
               if (jerk_mag_squared > sq(jerk_thershold))
