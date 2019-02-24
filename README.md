@@ -27,13 +27,14 @@ I contributed
 
 #### Ever had an expensive package destroyed in the mail? Probably. It's happened to all of us at some point. 
 
-But now, with the advent of inexpensive microcomputers like Aurduino, Rasberry Pi, and Qualcomm Dragonbard 410c, companies can provide a near-omniscient view of your package from the moment it leaves the warehouse to the moment it shows up at your door.
+But now, with the advent of inexpensive microcomputers like Arduino, Raspberry Pi, and Qualcomm Dragonbard 410c, companies can provide a near-omniscient view of your package from the moment it leaves the warehouse to the moment it shows up at your door.
 
-In the future, you can log in to a website and get minuite by minuite updates on your package's condition, but for now, we're using Twilio's API's to send you critical information as it occurs and Rapid's APIs to give you premium access to maps so you can check the exact location of your important goods.
+In the future, you can log in to a website and get minute by minute updates on your package's condition, but for now, we're using Twilio's API's to send you critical information as it occurs and Rapid's APIs to give you premium access to maps so you can check the exact location of your important goods.
 
 The microcomputer will come stocked with a variety of sensors including:
 * GPS for accurate tracking of your package. Out with tracking numbers and in with real-time updates
 * Accelerometer to let you know if your fragile package had and unexpected bumps or bruises in transit
 * Water sensor in case of the unfortunate event of dropping your package in the ocean
 
-We care deeply about your package, and you should too. There's no better way to ensure your package is insured and lives up to the high shipping costs you pay. 
+We care deeply about your package, and you should too. There's no better way to ensure your package is insured and lives up to the high shipping costs you pay.
+
