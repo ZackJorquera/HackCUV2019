@@ -166,7 +166,10 @@ void dmpDataReady() {
 // ===                      INITIAL SETUP                       ===
 // ================================================================
 
-void setup() {
+void setup() 
+{
+    Serial.begin(9600);     // Communication started with 9600 baud
+    
     // join I2C bus (I2Cdev library doesn't do this automatically)
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
         Wire.begin();
@@ -352,7 +355,7 @@ void loop() {
               //magnitude of the jerk. in this cae direction doesnt matter
               //also for fast computation we only care about the jerk^2
 
-              auto jerk_mag_squared = sq(3*(aaReal.x - aaReal_p.x)) + sq(3*(aaReal.y - aaReal_p.y)) + sq(3*(aaReal.z - aaReal_p.z));
+              float jerk_mag_squared = sq(3*(aaReal.x - aaReal_p.x)) + sq(3*(aaReal.y - aaReal_p.y)) + sq(3*(aaReal.z - aaReal_p.z));
               
 
               if (jerk_mag_squared > sq(jerk_thershold))
@@ -407,6 +410,12 @@ void loop() {
     if (iterator % 500 == 0)
     {
       //Other codes: GPS, Water
+        int water_reading = analogRead(A1); // Incoming analog signal read and appointed sensor
+        
+        if (water_reading > water_sensor_threshold)
+        {
+            //text_load()
+        }
 
       //Get Data
       //text_load();
