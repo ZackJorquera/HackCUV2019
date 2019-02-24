@@ -1,6 +1,6 @@
 msg:your package is fucked
 gps:(10.009,-1002.9)
-msg:Possible drop: Jerk^2(>8): 81
+msg:Possible drop: Jerk^2[>8]: 81
 msg:Possible water damage! water level: 8
 msg:low battery
 
