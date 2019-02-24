@@ -40,7 +40,9 @@ THE SOFTWARE.
 */
 
 //Writing to files
-#include <FileIO.h>
+//#include <FileIO.h>
+#include <SPI.h>
+#include <SD.h>
 
 //GPS Headers
 #include <TinyGPS++.h>
@@ -111,13 +113,13 @@ MPU6050 mpu;
 // not compensated for orientation, so +X is always +X according to the
 // sensor, just without the effects of gravity. If you want acceleration
 // compensated for orientation, us OUTPUT_READABLE_WORLDACCEL instead.
-#define OUTPUT_READABLE_REALACCEL
+//#define OUTPUT_READABLE_REALACCEL
 
 // uncomment "OUTPUT_READABLE_WORLDACCEL" if you want to see acceleration
 // components with gravity removed and adjusted for the world frame of
 // reference (yaw is relative to initial orientation, since no magnetometer
 // is present in this case). Could be quite handy in some cases.
-//#define OUTPUT_READABLE_WORLDACCEL//i think we want this one
+#define OUTPUT_READABLE_WORLDACCEL//i think we want this one
 
 // uncomment "OUTPUT_TEAPOT" if you want output that matches the
 // format used for the InvenSense teapot demo
@@ -179,6 +181,7 @@ SoftwareSerial ss(RXPin, TXPin);
 
 
 //PrintWriter output;
+File dataFile;
 
 
 // ================================================================
@@ -202,8 +205,9 @@ void dmpDataReady()
 void setup()
 {
     //writing to txt
-    Bridge.begin();
-    FileSystem.begin();
+    //Bridge.begin();
+    //FileSystem.begin();
+    SD.begin(4);
 
     //GPS
     //Serial.begin(115200);
@@ -290,7 +294,7 @@ void setup()
     aaReal_p.x = -100;
     aaWorld_p.x = -100;
    
-   Bridge.begin();
+   //Bridge.begin();
 }
 
 
@@ -521,19 +525,24 @@ void text_load(String tag, String data)
     text_msg += (tag + ":" + data + "\n");
 }
 
-void uploadScript() 
-{
-  File script = FileSystem.open("/tmp/~/TextMessage", FILE_WRITE);
-  script.print(text_msg);
-  script.close();
-}
+//void uploadScript() 
+//{
+//  File script = FileSystem.open("/tmp/~/TextMessage", FILE_WRITE);
+//  script.print(text_msg);
+//  script.close();
+//}
 
 void text_send()
 {
+  dataFile = SD.open("TextMessage.txt", FILE_WRITE);
+
+  dataFile.print(text_msg);
+
+  
     //call python file
     //uncomment when python script is present
     
-      uploadScript();
+      //uploadScript();
      //TODO pass text_msg to txt file
 
      //output.print( text_msg );
