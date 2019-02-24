@@ -562,12 +562,11 @@ void displayInfo()
     sprintf(c, "(%f,%f)", gps.location.lat(), gps.location.lng());
     text_load("gps", c);
   }
-  //else
-  //{
-  //  Serial.print(F("INVALID"));
-  //  Serial.print("40.0096", 6);
-  //  Serial.print(F(","));
-  //  Serial.print("-105.2419", 6);
-  //}  
+  else
+  {
+    Serial.print("40.0096", 6);
+    Serial.print(F(","));
+    Serial.print("-105.2419", 6);
+  }  
   Serial.println();
 }
