@@ -1,0 +1,31 @@
+git clone  https://github.com/jackmitch/libsoc.git
+cd libsoc 
+autoreconf -i 
+./configure 
+make 
+sudo make install 
+
+git clone  https://github.com/96boards/96BoardsGPIO.git
+cd 96BoardsGPIO 
+./configure 
+make 
+sudo make install 
+sudo ldconfig /usr/local/lib
+
+git clone  https://github.com/intel-iot-devkit/mraa.git
+mkdir -p mraa/build 
+cd mraa/build 
+cmake .. 
+make 
+sudo make install 
+sudo ldconfig /usr/local/lib 
+
+sudo ln -s /usr/bin/swig3.0 /usr/bin/swig 
+git clone  https://github.com/intel-iot-devkit/upm.git
+mkdir -p upm/build 
+cd upm/build 
+cmake -DBUILDSWIGNODE=OFF .. 
+make 
+sudo make install 
+sudo ldconfig /usr/local/lib/libump-*
+sudo reboot
