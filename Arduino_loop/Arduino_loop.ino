@@ -162,6 +162,7 @@ String text_msg = "";
 void text_load(String tag, String data);
 void text_send();
 void displayInfo();
+void uploadScript();
 
 //iterator. we use this so we dont record data for gps as often as acceleration data
 int iterator = 0;
@@ -176,9 +177,8 @@ TinyGPSPlus gps;
 // The serial connection to the GPS device
 SoftwareSerial ss(RXPin, TXPin);
 
-import processing.serial.*;
-Serial mySerial;
-PrintWriter output;
+
+//PrintWriter output;
 
 
 // ================================================================
@@ -202,12 +202,12 @@ void dmpDataReady()
 void setup()
 {
     //writing to txt
-    mySerial = new Serial( this, Serial.list()[0], 115200 );
-`   output = createWriter( "~/TextMessage.txt" );
+    Bridge.begin();
+    FileSystem.begin();
 
     //GPS
-    Serial.begin(115200);
-    ss.begin(GPSBaud);
+    //Serial.begin(115200);
+    //ss.begin(GPSBaud);
    
     //Acceleration
     // join I2C bus (I2Cdev library doesn't do this automatically)
@@ -521,19 +521,22 @@ void text_load(String tag, String data)
     text_msg += (tag + ":" + data + "\n");
 }
 
+void uploadScript() 
+{
+  File script = FileSystem.open("/tmp/~/TextMessage", FILE_WRITE);
+  script.print(text_msg);
+  script.close();
+}
+
 void text_send()
 {
     //call python file
     //uncomment when python script is present
-   
-    try
-    {
-      output.print( text_msg );
-    }
-    catch (...)
-    {
-      Serial.println("Oh snap!! python scripts DIDNT WORK. FIX THAT!");
-    }
+    
+      uploadScript();
+     //TODO pass text_msg to txt file
+
+     //output.print( text_msg );
     text_msg = "";
 }
 
