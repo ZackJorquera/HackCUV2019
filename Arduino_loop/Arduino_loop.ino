@@ -39,6 +39,9 @@ THE SOFTWARE.
 ===============================================
 */
 
+//Writing to files
+#include <FileIO.h>
+
 //GPS Headers
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
@@ -52,10 +55,6 @@ GPS device hooked up on pins 8(rx) and 9(tx).*/
 
 #include "MPU6050_6Axis_MotionApps20.h"
 //#include "MPU6050.h" // not necessary if using MotionApps include file
-
-//launch python script
-//#include <Bridge.h>
-#include <Process.h>
 
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
 // is used in I2Cdev.h
@@ -177,6 +176,10 @@ TinyGPSPlus gps;
 // The serial connection to the GPS device
 SoftwareSerial ss(RXPin, TXPin);
 
+import processing.serial.*;
+Serial mySerial;
+PrintWriter output;
+
 
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
@@ -198,9 +201,9 @@ void dmpDataReady()
 
 void setup()
 {
-    //Water sensor
-    //Serial.begin(9600);     // Communication started with 9600 baud
-    // We dont need this becuse we set the baud rate to 115200 later on
+    //writing to txt
+    mySerial = new Serial( this, Serial.list()[0], 115200 );
+`   output = createWriter( "~/TextMessage.txt" );
 
     //GPS
     Serial.begin(115200);
@@ -523,10 +526,9 @@ void text_send()
     //call python file
     //uncomment when python script is present
    
-    //Process p;
     try
     {
-      p.runShellCommandAsynchronously("python ~/sendText.py text \"" + text_msg + "\"" );// wont work unless fine is there
+      output.print( text_msg );
     }
     catch (...)
     {
