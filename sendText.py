@@ -40,5 +40,3 @@ def text(s):
         p = re.compile('^( gps.+)\)[\r \n]+$', re.MULTILINE)
         textCli(p.sub('', s))
 
-
-text(string) #test the text function
