@@ -168,7 +168,12 @@ void dmpDataReady() {
 
 void setup() 
 {
+    //water sensor
     Serial.begin(9600);     // Communication started with 9600 baud
+    
+    //GPS
+    
+    //Accel
     
     // join I2C bus (I2Cdev library doesn't do this automatically)
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
