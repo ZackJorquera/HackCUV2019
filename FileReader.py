@@ -19,7 +19,7 @@ while (True):
 
         for line in content.split('\n'):
             if (initialise == True):
-                f.open('config.txt', 'r')
+                f = open('config.txt', 'r')
                 (f.readline())
                 line = (f.readline()) + line
                 f.close()
