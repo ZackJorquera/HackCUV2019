@@ -19,7 +19,7 @@ sudo /sbin/iw dev wlan0 set power_save off
 sudo ip link set wlan0 down
 
 
-sudo iw wlan0 set type managed
+sudo iw wlan0 set type monitor
 
 
 sudo ip link set wlan0 up
