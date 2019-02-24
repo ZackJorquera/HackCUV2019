@@ -3,7 +3,7 @@ from pathlib2 import Path
 import time
 import os
 
-os.mknod('config.txt')
+open('config.txt', 'w').close()
 with open('config.txt') as f:
     f.write('+17202357772')
     f.write("destgps:(50,50)\n")
