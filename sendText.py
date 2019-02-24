@@ -6,9 +6,9 @@ import sys
 # Your Account SID from twilio.com/console
 account_sid =  "AC92c65f9777b5d0df6942b43a2fa29760"
 # Your Auth Token from twilio.com/console
-auth_token  = "4d5a38878d4689ea4274ee74674368f0"
+auth_token  = "3fb9481d123b40e8e83d9b2f6a742340"
 
-#string = "msg: your package is fucked \n gps:(10.009,-1002) \n jerk:9 \n msg: Possible drop, with change in accel: 9  \n Water:88 \n msg: possible water damage \n msg: low battery" #test s is the test string
+#string = "msg: your package is fucked \n gps:(40.0096,-105.2419) \n jerk:9 \n msg: Possible drop, with change in accel: 9  \n Water:88 \n msg: possible water damage \n msg: low battery" #test s is the test string
 #string = "destgps:(100,100)\ngps:(1,1)"
 #string = "test1"
 
