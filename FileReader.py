@@ -18,7 +18,7 @@ while (True):
         os.remove(str(my_file))
 
         for line in content.split('\n'):
-            if (initialise = True):
+            if (initialise == True):
                 f.open('config.txt', 'r')
                 (f.readline())
                 line = print(f.readline()) + line
