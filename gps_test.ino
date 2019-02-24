@@ -68,13 +68,13 @@
          Serial.print(linea[indices[2]+1]);
          Serial.print(" ");
          Serial.print(linea[indices[3]+1]);
-         Serial.println("")
+         Serial.println("");
           
          Serial.print("Longitude: ");
          Serial.print(linea[indices[4]+1]);
          Serial.print(" ");
          Serial.print(linea[indices[5]+1]);
-         Serial.println("")
+         Serial.println("");
         
          Serial.println("---------------");
        }
