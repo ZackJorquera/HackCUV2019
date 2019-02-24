@@ -3,8 +3,8 @@ from pathlib2 import Path
 import time
 import os
 
-open('config.txt', 'w').close()
-with open('config.txt') as f:
+open('config.txt', "w")
+with open("config.txt") as f:
     f.write('+17202357772\n')
     f.write("destgps:(50,50)\n")
     f.close()
