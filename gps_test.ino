@@ -36,7 +36,7 @@
      // note: there is a potential buffer overflow here!
      linea[conta]=byteGPS;        // If there is serial port data, it is put in the buffer
      conta++;                      
-     //Serial.print(byteGPS, byteGPS); 
+     Serial.print(byteGPS, BYTE); 
      if (byteGPS==13){            // If the received byte is = to 13, end of transmission
        // note: the actual end of transmission is <CR><LF> (i.e. 0x13 0x10)
        digitalWrite(ledPin, LOW); 
@@ -63,19 +63,27 @@
          Serial.println("");      // ... and write to the serial port
          Serial.println("");
          Serial.println("---------------");
-        
-         Serial.print("Latitude: ");
-         Serial.print(linea[indices[2]+1]);
-         Serial.print(" ");
-         Serial.print(linea[indices[3]+1]);
-         Serial.println("");
-          
-         Serial.print("Longitude: ");
-         Serial.print(linea[indices[4]+1]);
-         Serial.print(" ");
-         Serial.print(linea[indices[5]+1]);
-         Serial.println("");
-        
+         for (int i=0;i<12;i++){
+           switch(i){
+             case 0 :Serial.print("Time in UTC (HhMmSs): ");break;
+             case 1 :Serial.print("Status (A=OK,V=KO): ");break;
+             case 2 :Serial.print("Latitude: ");break;
+             case 3 :Serial.print("Direction (N/S): ");break;
+             case 4 :Serial.print("Longitude: ");break;
+             case 5 :Serial.print("Direction (E/W): ");break;
+             case 6 :Serial.print("Velocity in knots: ");break;
+             case 7 :Serial.print("Heading in degrees: ");break;
+             case 8 :Serial.print("Date UTC (DdMmAa): ");break;
+             case 9 :Serial.print("Magnetic degrees: ");break;
+             case 10 :Serial.print("(E/W): ");break;
+             case 11 :Serial.print("Mode: ");break;
+             case 12 :Serial.print("Checksum: ");break;
+           }
+           for (int j=indices[i];j<(indices[i+1]-1);j++){
+             Serial.print(linea[j+1]); 
+           }
+           Serial.println("");
+         }
          Serial.println("---------------");
        }
        conta=0;                    // Reset the buffer
