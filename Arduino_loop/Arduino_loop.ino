@@ -497,7 +497,7 @@ void displayInfo()
     Serial.print(F(","));
     Serial.print(gps.location.lng(), 6);
      
-    char c[200]
+    char c[200] = ""
     sprintf(c, "(%f,%f)", gps.location.lat(), gps.location.lng());
     text_load("gps", c)
   }
