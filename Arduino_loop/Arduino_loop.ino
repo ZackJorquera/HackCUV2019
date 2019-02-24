@@ -1,4 +1,5 @@
 //Writing to files
+//Arduino has a fatalflaw
 #include <SPI.h>
 #include <SD.h>
 
